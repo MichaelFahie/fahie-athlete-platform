@@ -1,5 +1,6 @@
 export const demoCustomer = {
   customerId: "demo-athlete",
+  tierId: "founding",
 
   identity: {
     firstName: "Demo",
