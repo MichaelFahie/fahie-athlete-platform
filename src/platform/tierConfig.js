@@ -12,7 +12,6 @@ export const tierConfig = {
       mediaGallery: false,
       schedule: false,
       recruitingContact: true,
-      customDomain: false,
       analytics: false,
       multiAthlete: false,
       organizationBranding: false,
@@ -33,7 +32,6 @@ export const tierConfig = {
       mediaGallery: true,
       schedule: false,
       recruitingContact: true,
-      customDomain: false,
       analytics: false,
       multiAthlete: false,
       organizationBranding: false,
@@ -41,8 +39,8 @@ export const tierConfig = {
     },
   },
 
-  // Full recruiting platform for athletes requiring scheduling,
-  // a custom domain, expanded media, and visitor analytics.
+  // Advanced recruiting platform providing expanded media,
+  // visitor analytics, scheduling capabilities, and priority support.
   professional: {
     name: "Professional",
     monthlyPrice: 100,
@@ -54,7 +52,6 @@ export const tierConfig = {
       mediaGallery: true,
       schedule: true,
       recruitingContact: true,
-      customDomain: true,
       analytics: true,
       multiAthlete: false,
       organizationBranding: false,
@@ -75,7 +72,6 @@ export const tierConfig = {
       mediaGallery: true,
       schedule: true,
       recruitingContact: true,
-      customDomain: true,
       analytics: true,
       multiAthlete: true,
       organizationBranding: true,
@@ -97,7 +93,6 @@ export const tierConfig = {
       mediaGallery: true,
       schedule: true,
       recruitingContact: true,
-      customDomain: true,
       analytics: true,
       multiAthlete: false,
       organizationBranding: false,
