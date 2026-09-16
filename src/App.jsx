@@ -1,10 +1,9 @@
 import "./App.css";
-import { getCustomer } from "./platform/customerRegistry";
+import { getCustomerByHostname } from "./platform/customerRegistry";
 import { getTier, tierConfig } from "./platform/tierConfig";
 
 function App() {
-  const customerId = "demo-athlete";
-  const customer = getCustomer(customerId);
+  const customer = getCustomerByHostname(window.location.hostname);
 
   if (!customer) {
     return <h1>Customer not found</h1>;
