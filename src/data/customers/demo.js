@@ -47,7 +47,15 @@ export const demoCustomer = {
 
   platform: {
     status: "development",
-    domain: "localhost",
     templateVersion: "v1",
+
+    domain: {
+      hostname: "localhost",
+      status: "development",
+      ownership: "customer",
+      managedBy: "fahie-consulting",
+      registrationIncluded: true,
+      renewalIncluded: true,
+    },
   },
 };
