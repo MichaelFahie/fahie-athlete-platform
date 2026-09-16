@@ -1,5 +1,9 @@
 import "./App.css";
 import { getCustomerByHostname } from "./platform/customerRegistry";
+import {
+  getInitialCharge,
+  platformPricing,
+} from "./platform/pricingConfig";
 import { getTier, tierConfig } from "./platform/tierConfig";
 
 function App() {
@@ -18,6 +22,7 @@ function App() {
   const publicTiers = Object.entries(tierConfig).filter(
     ([, plan]) => plan.isPublic !== false,
   );
+  const launch = platformPricing.athleteBrandLaunch;
 
   return (
     <main>
@@ -28,12 +33,24 @@ function App() {
       <p>Platform Version: {customer.platform.templateVersion}</p>
 
       <section>
+        <h2>{launch.name}</h2>
+        <p>${launch.oneTimePrice} one-time</p>
+        <ul>
+          {launch.includes.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <p>{launch.premiumDomainPolicy}</p>
+      </section>
+
+      <section>
         <h2>Available Plans</h2>
 
         {publicTiers.map(([tierId, plan]) => (
           <article key={tierId}>
             <h3>{plan.name}</h3>
-            <p>${plan.monthlyPrice}/month</p>
+            <p>Due today: ${getInitialCharge(plan.monthlyPrice)}</p>
+            <p>Then ${plan.monthlyPrice}/month</p>
           </article>
         ))}
       </section>
