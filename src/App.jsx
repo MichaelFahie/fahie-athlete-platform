@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import "./App.css";
-import { getCustomerByHostname } from "./platform/customerRegistry";
+import { resolveCustomerByHostname } from "./platform/customerService";
 import {
   getInitialCharge,
   platformPricing,
@@ -7,9 +8,44 @@ import {
 import { getTier, tierConfig } from "./platform/tierConfig";
 
 function App() {
-  const customer = getCustomerByHostname(window.location.hostname);
+  const [customer, setCustomer] = useState(undefined);
+  const [loadError, setLoadError] = useState(null);
 
-  if (!customer) {
+  useEffect(() => {
+    let isActive = true;
+
+    async function loadCustomer() {
+      try {
+        const resolvedCustomer = await resolveCustomerByHostname(
+          window.location.hostname,
+        );
+
+        if (isActive) {
+          setCustomer(resolvedCustomer);
+        }
+      } catch {
+        if (isActive) {
+          setLoadError("Unable to load customer");
+        }
+      }
+    }
+
+    loadCustomer();
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
+  if (loadError) {
+    return <h1>{loadError}</h1>;
+  }
+
+  if (customer === undefined) {
+    return <h1>Loading athlete experience...</h1>;
+  }
+
+  if (customer === null) {
     return <h1>Customer not found</h1>;
   }
 
